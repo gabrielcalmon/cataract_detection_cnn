@@ -1,6 +1,6 @@
 import streamlit as st
-import gdown
 import tensorflow as tf
+import gdown
 import io
 from PIL import Image
 import numpy as np
@@ -10,8 +10,8 @@ def load_model():
     # https://drive.google.com/file/d/1mUhkSozH2pfFxz_WHLALnGAo3DkFmCd2/view?usp=sharing
     url='https://drive.google.com/uc?id=1mUhkSozH2pfFxz_WHLALnGAo3DkFmCd2'
     gdown.download(url, 'model_downloaded.tflite')
-    interpreter = tf.lite.Interprter(model_path='model_downloaded.tflite')
-    interpreter.allocate_tensor()
+    interpreter = tf.lite.Interpreter(model_path='model_downloaded.tflite')
+    interpreter.allocate_tensors()
 
     return interpreter
 
@@ -25,7 +25,7 @@ def load_image():
         st.image(image)
         st.success('The image was loaded')
 
-        image = np.array(image, dtype=float32)
+        image = np.array(image, dtype=np.float32)
         image = image / 255.0
 
         image = np.expand_dims(image, axis=0)
