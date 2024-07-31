@@ -64,5 +64,5 @@ def main():
     if image is not None:
         classify(interpreter, image)
 
-if __name__ == "main__":
+if __name__ == "__main__":
     main()
